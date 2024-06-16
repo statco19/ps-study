@@ -27,15 +27,15 @@ int maxValue(int r, int c) {
 	int v1 = maxValue(r+1,c);
 	int v2 = maxValue(r+1,c+1);
 
-	if(v1 > v2) {
+	if(v1 >= v2) {
 		ret = tri[r][c] + v1;
 		paths[r][c] += paths[r+1][c];
-	} else if(v1 < v2) {
+		if(v1 == v2) {
+			paths[r][c] += paths[r+1][c+1];
+		}
+	} else {
 		ret = tri[r][c] + v2;
 		paths[r][c] += paths[r+1][c+1];
-	} else {
-		ret = tri[r][c] + v1;
-		paths[r][c] += paths[r+1][c] + paths[r+1][c+1];
 	}
 
 	return ret;
